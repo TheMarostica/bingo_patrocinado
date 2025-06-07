@@ -33,16 +33,17 @@ class _PedraState extends State<Pedra> {
           Set<WidgetState> states,
         ) {
           if (clicado) {
-            return Color.fromARGB(125, 250, 243, 181);
+            return Colors.black;
           }
-          return Color.fromARGB(255, 255, 251, 216);
+          return const Color.fromARGB(255, 255, 251, 216);
         }),
       ),
       child: Text(
         widget.numero,
         style: TextStyle(
           color: clicado ? Colors.white : Colors.black,
-          fontSize: 23.0,
+          fontSize: 45.0,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

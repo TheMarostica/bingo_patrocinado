@@ -7,51 +7,40 @@ class PatrocinioTela extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-    final double screenHeight = screenSize.height;
-
-    double heightImage;
-
-    if (screenHeight > 800) {
-      heightImage = 800;
-    } else {
-      heightImage = 500;
-    }
+    final Size size = MediaQuery.of(context).size;
+    print(size.height);
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 37, 55, 62),
+      backgroundColor: const Color.fromARGB(255, 100, 124, 134),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 100, 124, 134),
+        toolbarHeight: 35,
+      ),
       body: Center(
-        child: Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Image.asset('images/$numero.jpeg', height: heightImage),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Número: ',
-                    style: TextStyle(
-                      fontSize: 40,
-                      color: Colors.white,
-                    ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset('images/$numero.jpeg', width: 900, height: 800),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Número',
+                  style: TextStyle(fontSize: 100, color: Colors.black),
+                ),
+                Container(
+                  width: 400,
+                  height: 400,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 255, 251, 216),
+                    borderRadius: BorderRadius.circular(200),
                   ),
-                  Container(
-                    width: 80,
-                    height: 80,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 251, 216),
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: Text(numero, style: TextStyle(fontSize: 30)),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                  child: Text(numero, style: TextStyle(fontSize: 250)),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

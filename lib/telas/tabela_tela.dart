@@ -11,106 +11,72 @@ class TabelaTela extends StatefulWidget {
 class _TabelaTelaState extends State<TabelaTela> {
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-    final double screenWidth = screenSize.width;
-    final double screenHeight = screenSize.height;
+    final Size size = MediaQuery.of(context).size;
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        double topTabela;
-        double bottomTabela;
-
-        double widthLogo;
-        double heightLogo;
-
-        if (screenWidth == 1920 && screenHeight == 1080) {
-          topTabela = 80;
-          bottomTabela = 100;
-
-          widthLogo = 200;
-          heightLogo = 100;
-        } else {
-          topTabela = 20;
-          bottomTabela = 30;
-
-          widthLogo = 200;
-          heightLogo = 100;
-        }
-
-        return Scaffold(
-          backgroundColor: const Color.fromARGB(255, 37, 55, 62),
-          appBar: AppBar(
-            backgroundColor: Color.fromARGB(225, 63, 97, 113),
-            leading: SizedBox(),
-            leadingWidth: 100,
-            title: Text(
-              'Bingo',
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 37, 55, 62),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(225, 63, 97, 113),
+        leading: const SizedBox(),
+        leadingWidth: 100,
+        toolbarHeight: 150,
+        actions: [
+          Image.asset('logos/', height: 100),
+          const SizedBox(width: 10),
+          Image.asset('logos/', height: 100),
+          const SizedBox(width: 30),
+        ],
+        title: const Row(
+          children: [
+            Text(
+              'Bingo | ',
               style: TextStyle(
                 color: Color.fromARGB(225, 214, 200, 147),
-                fontSize: 40,
+                fontSize: 60,
+              ),
+            ),
+            Text(
+              'Patrocinado',
+              style: TextStyle(
+                color: Color.fromARGB(225, 214, 200, 147),
+                fontSize: 60,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(50.0),
+          ],
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(50.0)),
+        ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 50.0,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white12,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: GridView.count(
+                padding: const EdgeInsets.all(10.0),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 5,
+                crossAxisCount: 13,
+                children: <Widget>[
+                  for (int i = 1; i <= 75; i++)
+                    Pedra(numero: i.toString().padLeft(2, '0')),
+                ],
               ),
             ),
           ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, topTabela, 10, bottomTabela),
-                  decoration: BoxDecoration(
-                    color: Colors.white12,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: GridView.count(
-                    padding: EdgeInsets.all(10.0),
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 5,
-                    crossAxisCount: 15,
-                    childAspectRatio: 1.0,
-                    children: <Widget>[
-                      for (int i = 1; i <= 90; i++)
-                        Pedra(numero: i.toString().padLeft(2, '0')),
-                    ],
-                  ),
-                ),
-              ),
-
-              // ACRESCENTAR LOGO
-              // Stack(
-              //   alignment: Alignment.bottomRight,
-              //   children: [
-              //     Container(
-              //       decoration: BoxDecoration(
-              //         color: Colors.white,
-              //         borderRadius: BorderRadius.only(
-              //           topLeft: Radius.circular(30),
-              //         ),
-              //       ),
-              //       width: widthLogo,
-              //       height: heightLogo,
-              //       child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.end,
-              //         children: [
-              //           Image.asset('logos/', height: 100),
-              //           SizedBox(width: 10),
-              //           Image.asset('logos/', height: 100),
-              //           SizedBox(width: 5),
-              //         ],
-              //       ),
-              //     ),
-              //   ],
-              // ),
-            ],
-          ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
