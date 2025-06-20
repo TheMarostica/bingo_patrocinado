@@ -30,7 +30,13 @@ class PatrocinioTela extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.asset('images/$numero.jpeg', width: 900, height: 800),
+              Image.asset('images/$numero.jpeg',
+                width: 900,
+                height: 800,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset('logos/paroquia.png', width: 900, height: 800,);
+                },
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
