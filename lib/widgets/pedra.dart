@@ -14,7 +14,7 @@ class Pedra extends StatefulWidget {
 class _PedraState extends State<Pedra> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return OutlinedButton(
       onPressed: () {
         widget.onPressed();
       },
